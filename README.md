@@ -1,6 +1,6 @@
 # Readme
 
-Configs based on Dreams of Code's configs.
+Configs mostly based on Dreams of Code's configs.
 
 ## Additional steps
 - Install Rust using rustup
