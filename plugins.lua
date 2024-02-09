@@ -159,6 +159,10 @@ local plugins = {
       require "custom.configs.lint"
     end
   },
+  {
+    "okuuva/auto-save.nvim",
+    event = { "InsertLeave", "TextChanged" },
+  },
 }
 
 return plugins
