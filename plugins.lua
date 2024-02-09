@@ -12,12 +12,17 @@ local plugins = {
         "ruff",
         "pyright",
         "rust-analyzer",
+        "eslint-lsp",
+        "js-debug-adapter",
+        "prettier",
+        "typescript-language-server"
       },
     },
   },
   {
     "mfussenegger/nvim-dap",
     init = function()
+      require "custom.configs.dap"
       require("core.utils").load_mappings("dap")
     end
   },
@@ -99,14 +104,14 @@ local plugins = {
       require "custom.configs.rustaceanvim"
     end
   },
-{
+  {
     'saecki/crates.nvim',
-    ft = {"toml"},
+    ft = { "toml" },
     config = function(_, opts)
-      local crates  = require('crates')
+      local crates = require('crates')
       crates.setup(opts)
       require('cmp').setup.buffer({
-        sources = { { name = "crates" }}
+        sources = { { name = "crates" } }
       })
       crates.show()
       require("core.utils").load_mappings("crates")
@@ -115,11 +120,11 @@ local plugins = {
   {
     "rust-lang/rust.vim",
     ft = "rust",
-    init = function ()
+    init = function()
       vim.g.rustfmt_autosave = 1
     end
   },
-{
+  {
     "theHamsta/nvim-dap-virtual-text",
     lazy = false,
     config = function(_, opts)
@@ -135,11 +140,24 @@ local plugins = {
         behavior = cmp.ConfirmBehavior.Insert,
         select = false,
       }
-      table.insert(M.sources, {name = "crates"})
+      table.insert(M.sources, { name = "crates" })
       return M
     end,
-  }
+  },
+  {
+    "mhartington/formatter.nvim",
+    event = "VeryLazy",
+    opts = function()
+      return require "custom.configs.formatter"
+    end
+  },
+  {
+    "mfussenegger/nvim-lint",
+    event = "VeryLazy",
+    config = function()
+      require "custom.configs.lint"
+    end
+  },
 }
-
 
 return plugins
