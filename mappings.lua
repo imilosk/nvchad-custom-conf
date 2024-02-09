@@ -1,5 +1,12 @@
 local M = {}
 
+M.custom = {
+  n = {
+    ["<C-d>"] = { "<C-d>zz", "Go down by a half a page and center" },
+    ["<C-u>"] = {"<C-u>zz", "Go up by a half a page and center" }
+  }
+}
+
 M.dap = {
   plugin = true,
   n = {
